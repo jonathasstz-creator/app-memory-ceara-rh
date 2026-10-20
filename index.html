@@ -1171,7 +1171,7 @@ h1 em {
           <button class="cta-big" type="button" data-action="jogar" id="ctaJogar"><i data-icon="sparkles" class="filled"></i> Bora jogar!</button>
           <div class="cta-notes">
             <span><i data-icon="clock"></i> leva menos de 1 minuto</span>
-            <span><i data-icon="timer"></i> <strong id="notaTempo">valendo 20 segundos</strong></span>
+            <span><i data-icon="timer"></i> <strong id="notaTempo">valendo 30 segundos</strong></span>
           </div>
         </div>
       </main>
@@ -1199,7 +1199,7 @@ h1 em {
           <h2>Vire duas cartas por vez</h2>
         </div>
         <div class="hud-stats">
-          <div class="timer" id="timer" aria-live="off"><i data-icon="timer"></i><strong id="timerNum">20</strong></div>
+          <div class="timer" id="timer" aria-live="off"><i data-icon="timer"></i><strong id="timerNum">30</strong></div>
           <div class="stat"><span>tentativas</span><strong id="attempts">00</strong></div>
           <div class="stat"><span>pares</span><strong id="progressCount">0/4</strong></div>
         </div>
@@ -1238,12 +1238,11 @@ h1 em {
       <div class="fim-card">
         <div class="tempo-icone"><i data-icon="timer"></i></div>
         <div class="fim-copy">
-          <p class="section-eyebrow" id="tempoEyebrow">tempo esgotado ⏱</p>
-          <h2>Vixe, <span>acabou o tempo!</span></h2>
+          <p class="section-eyebrow" id="tempoEyebrow">acabou o tempo ⏱</p>
+          <h2>Não foi <span>dessa vez!</span></h2>
           <p id="tempoTexto"></p>
           <div class="fim-acoes">
-            <button type="button" class="play-again solid" data-action="jogar"><i data-icon="reset"></i> tentar de novo</button>
-            <button type="button" class="play-again" data-action="inicio">início</button>
+            <button type="button" class="play-again solid" data-action="inicio"><i data-icon="reset"></i> voltar pro início</button>
           </div>
         </div>
       </div>
@@ -1282,8 +1281,8 @@ h1 em {
 (() => {
   "use strict";
 
-  // Tempo pra achar os 4 pares, contando do 1º toque (pedido do Iago via Thiago, 20/10: "15 ou 20 segundos").
-  const TEMPO_LIMITE_S = 20;
+  // Tempo pra achar os 4 pares, contando do 1º toque (Iago via Thiago, 20/10 13:57: "tempo máximo de 30 segundos").
+  const TEMPO_LIMITE_S = 30;
   // Link da CIS pra quem tirar o relatório na roleta presentear alguém. Vem do build.py; vazio = botão escondido.
   const QR_RELATORIO = "";
   const PIN_EQUIPE = "2910";
@@ -1496,11 +1495,11 @@ h1 em {
     fim = inicio + TEMPO_LIMITE_S * 1000;
     pintarRelogio();
     registrarPartida("tempo");
-    $("tempoEyebrow").textContent = `${TEMPO_LIMITE_S} segundos ⏱`;
+    $("tempoEyebrow").textContent = `acabou o tempo · ${TEMPO_LIMITE_S} segundos ⏱`;
     $("tempoTexto").textContent =
       achados.size === 0
-        ? "Não deu pra achar nenhum par dessa vez. Bora tentar de novo?"
-        : `Você achou ${achados.size} de ${TOTAL} pares. Faltou pouco, bora tentar de novo?`;
+        ? `Não deu pra achar nenhum par em ${TEMPO_LIMITE_S} segundos. Obrigado por jogar com a gente!`
+        : `Você achou ${achados.size} de ${TOTAL} pares em ${TEMPO_LIMITE_S} segundos. Faltou pouco! Obrigado por jogar com a gente.`;
     mostrarTela("tempo");
   }
 
