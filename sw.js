@@ -1,5 +1,5 @@
 // Guarda o jogo no tablet pra abrir sem internet. O build.py troca a versão a cada publicação.
-const CACHE = "app-memory-135db089ce";
+const CACHE = "app-memory-67c0f72937";
 const ARQUIVOS = ["./", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
