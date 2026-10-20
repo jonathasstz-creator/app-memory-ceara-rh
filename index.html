@@ -578,22 +578,9 @@ h1 em {
 .card-profile {
   font-weight: 700;
   font-size: 15px;
-  font-size: clamp(11px, min(calc((100cqw - 20px) / 8.6), 11cqh), 28px);
+  font-size: clamp(12px, min(calc((100cqw - 20px) / 10), 13cqh), 28px);
   line-height: 1.12;
   text-wrap: balance;
-}
-.card-benefit {
-  font-weight: 500;
-  font-size: 12px;
-  font-size: clamp(9px, min(calc((100cqw - 20px) / 13), 7.5cqh), 17px);
-  line-height: 1.25;
-  opacity: 0.88;
-  text-wrap: balance;
-}
-@container (max-height: 150px) {
-  .card-benefit {
-    display: none;
-  }
 }
 .matched-check {
   z-index: 2;
@@ -1164,14 +1151,14 @@ h1 em {
           </p>
           <div class="side-tip">
             <i data-icon="info"></i>
-            <p><strong>Dica rápida:</strong> Presta atenção nas ferramentas e nos benefícios. <em>A memória agradece.</em> 👀</p>
+            <p><strong>Dica rápida:</strong> Presta atenção nas ferramentas. <em>A memória agradece.</em> 👀</p>
           </div>
         </div>
         <div class="cta-wrap">
           <button class="cta-big" type="button" data-action="jogar" id="ctaJogar"><i data-icon="sparkles" class="filled"></i> Bora jogar!</button>
           <div class="cta-notes">
             <span><i data-icon="clock"></i> leva menos de 1 minuto</span>
-            <span><i data-icon="timer"></i> <strong id="notaTempo">valendo 30 segundos</strong></span>
+            <span><i data-icon="timer"></i> <strong id="notaTempo">valendo 20 segundos</strong></span>
           </div>
         </div>
       </main>
@@ -1199,7 +1186,7 @@ h1 em {
           <h2>Vire duas cartas por vez</h2>
         </div>
         <div class="hud-stats">
-          <div class="timer" id="timer" aria-live="off"><i data-icon="timer"></i><strong id="timerNum">30</strong></div>
+          <div class="timer" id="timer" aria-live="off"><i data-icon="timer"></i><strong id="timerNum">20</strong></div>
           <div class="stat"><span>tentativas</span><strong id="attempts">00</strong></div>
           <div class="stat"><span>pares</span><strong id="progressCount">0/4</strong></div>
         </div>
@@ -1281,8 +1268,8 @@ h1 em {
 (() => {
   "use strict";
 
-  // Tempo pra achar os 4 pares, contando do 1º toque (Iago via Thiago, 20/10 13:57: "tempo máximo de 30 segundos").
-  const TEMPO_LIMITE_S = 30;
+  // Tempo pra achar os 4 pares, contando do 1º toque (Thiago/Iago, 20/10 14:33: "tempo para 20 segundos").
+  const TEMPO_LIMITE_S = 20;
   // Link da CIS pra quem tirar o relatório na roleta presentear alguém. Vem do build.py; vazio = botão escondido.
   const QR_RELATORIO = "";
   const PIN_EQUIPE = "2910";
@@ -1291,10 +1278,10 @@ h1 em {
   const OCIOSO_MS = { jogo: 90000, ganhou: 180000, tempo: 120000 };
 
   const FERRAMENTAS = [
-    { id: "ia", label: "Recrutamento e Seleção com IA", beneficio: "Menos tempo na triagem", color: "#25282b", fg: "#ffffff", accent: "#ffb204", icon: "bot" },
-    { id: "perfil", label: "Perfil Comportamental", beneficio: "Muito além do DISC", color: "#ffb204", fg: "#25282b", accent: "#25282b", icon: "userSearch" },
-    { id: "feedback", label: "Registro de Feedback", beneficio: "Histórico centralizado", color: "#6358eb", fg: "#ffffff", accent: "#ffb204", icon: "message" },
-    { id: "tarefas", label: "Gestão de Tarefas", beneficio: "Responsável, prazo e acompanhamento", color: "#ffffff", fg: "#25282b", accent: "#6358eb", icon: "listChecks" },
+    { id: "ia", label: "Recrutamento e Seleção com IA", color: "#25282b", fg: "#ffffff", accent: "#ffb204", icon: "bot" },
+    { id: "perfil", label: "Perfil Comportamental", color: "#ffb204", fg: "#25282b", accent: "#25282b", icon: "userSearch" },
+    { id: "feedback", label: "Registro de Feedback", color: "#6358eb", fg: "#ffffff", accent: "#ffb204", icon: "message" },
+    { id: "tarefas", label: "Gestão de Tarefas", color: "#ffffff", fg: "#25282b", accent: "#6358eb", icon: "listChecks" },
   ];
   const TOTAL = FERRAMENTAS.length;
 
@@ -1413,7 +1400,7 @@ h1 em {
       el.innerHTML =
         `<span class="card-inner">` +
         `<span class="card-face card-front"><span class="card-icon">${icone(f.icon)}</span>` +
-        `<span class="card-profile">${esc(f.label)}</span><span class="card-benefit">${esc(f.beneficio)}</span>` +
+        `<span class="card-profile">${esc(f.label)}</span>` +
         `<span class="matched-check">${icone("check")}</span></span>` +
         `<span class="card-face card-back"><svg class="back-logo" aria-hidden="true"><use href="#app-symbol"/></svg>` +
         `<span class="back-symbol">App<br>Gerencial</span></span>` +
